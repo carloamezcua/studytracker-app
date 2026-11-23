@@ -334,7 +334,7 @@ Todos los endpoints viven bajo el prefijo `/api`, intercambian JSON UTF-8 y util
 ### Salud del Sistema
 | Método | Ruta | Propósito | Respuesta esperada |
 | :--- | :--- | :--- | :--- |
-| `GET` | `/api/health` | Verifica que la API responda y que exista conexión activa a PostgreSQL. | `200 OK` con `{ status: "ok", database: "connected" }` |
+| `GET` | `/api/health` | Verifica que la API responda, expone la versión activa y comprueba la conexión con PostgreSQL. | `200 OK` con `{ status: "ok", database: "connected", version: "0.x.y" }` |
 
 ### Materias (`/api/subjects`)
 | Método | Ruta | Propósito | Respuesta esperada |
@@ -384,6 +384,24 @@ Para mantener un historial profesional, legible y fácil de auditar, el proyecto
 
 ### Regla de oro de los commits atómicos
 Un commit debe representar **una única unidad lógica completa y funcional**. Nunca mezcles cambios de Docker con cambios de interfaz o correcciones de bugs en el mismo commit. En cada paso de la siguiente sección se indica el mensaje exacto sugerido.
+
+### Versionado Semántico por Hitos (SemVer)
+El proyecto adopta **Semantic Versioning (`MAJOR.MINOR.PATCH`)** mediante etiquetas anotadas de Git (`git tag -a vX.Y.Z -m "..."`), aplicadas **únicamente al cerrar hitos ejecutables y verificables**:
+
+- La serie **`0.x.y`** señala desarrollo inicial (la API y el modelo de datos todavía pueden evolucionar).
+- La versión **`v1.0.0`** marca el primer lanzamiento estable completo, probado y documentado.
+- Correcciones de errores menores sobre un hito ya etiquetado incrementan `PATCH` (por ejemplo, `v0.3.1`).
+
+| Etiqueta | Hito de cierre | Qué garantiza ese punto del historial |
+| :--- | :--- | :--- |
+| *(sin tag)* | **Fase 0** | Estructura base del repositorio, exclusiones y dependencias fijadas (aún sin servicio ejecutable). |
+| **`v0.1.0`** | **Fase 1** | Docker Compose levanta `app` y `PostgreSQL` saludables y `GET /api/health` responde correctamente. |
+| **`v0.2.0`** | **Fases 2 y 3** | Dominio puro cubierto por pruebas unitarias y tablas relacionales creadas en PostgreSQL. |
+| **`v0.3.0`** | **Fases 4 y 5** | API REST completa (`/api/subjects`, `/api/sessions`, `/api/analytics`) con pruebas de integración en verde. |
+| **`v0.4.0`** | **Fase 6** | Interfaz web modular, temporizador y dashboard analítico conectados de extremo a extremo. |
+| **`v1.0.0`** | **Fases 7 y 8** | Carga inicial idempotente, persistencia verificada en Docker y `README.md` de producción. |
+
+> **Sincronización con el código:** La versión activa debe centralizarse en una única constante (`APP_VERSION` en `app/config.py`), pasarse a `FastAPI(version=APP_VERSION)` y exponerse en `GET /api/health`, de modo que los tags de Git, la API y la documentación interactiva `/docs` coincidan siempre.
 
 ---
 
