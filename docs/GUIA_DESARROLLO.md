@@ -47,6 +47,13 @@ Quienes estudian disciplinas técnicas suelen registrar su tiempo con herramient
 - Visualizar tendencias reales mediante un **dashboard analítico interactivo** alimentado por consultas estructuradas sobre una base de datos relacional.
 - Ejecutar todo el sistema con un solo comando reproducible gracias a **Docker Compose**.
 
+### El rol de la gamificación orientada a calidad cognitiva
+Aunque el núcleo de **StudyTracker** es la analítica de estudio, el sistema incorpora una capa ligera de **gamificación determinista** (puntos de experiencia `XP`, curva cuadrática de niveles, rangos de progresión y racha de días activos) con un propósito concreto: **alinear los incentivos del estudiante con el aprendizaje activo y sostenido**, no con la simple acumulación de horas.
+
+- **Retroalimentación inmediata:** Estudiar produce resultados a mediano o largo plazo; traducir cada sesión en `XP` y avance hacia el siguiente nivel ofrece una señal tangible justo al terminar.
+- **Incentivo a la calidad, no solo al tiempo:** La fórmula de `XP` premia la generación propia, la retención alta (FSRS) y la lucha productiva, mientras penaliza la delegación excesiva en IA o la copia pasiva.
+- **Contrapeso contra el "farmeo":** La gamificación nunca opera aislada; se equilibra con el **índice de deuda cognitiva** y el porcentaje de autonomía para evitar que el usuario infle métricas sin aprender realmente.
+
 ---
 
 ## 2. Principios de Arquitectura y Anti-Patrones a Evitar
