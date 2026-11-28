@@ -1,0 +1,33 @@
+# Control de versiones y entorno local
+.git/
+.gitignore
+.env
+.env.*
+
+# Entornos virtuales y cachés de Python
+.venv/
+venv/
+ENV/
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.coverage
+htmlcov/
+.ruff_cache/
+
+# Bases de datos y logs locales
+*.db
+*.sqlite3
+*.log
+
+# Sistema operativo y editores
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+
+# Documentación y archivos no requeridos en runtime
+docs/
+README.md
+PIV - Proyecto Final.md
